@@ -15,7 +15,7 @@ class TestClick(SimplePageTest):
 
     def test_custom_elements(self):
         anchors = self.page.anchor_list
-        eq_(filter(lambda x: x.get_href(), anchors)[0].get_href(), get_url('resultPage.html'))
+        eq_(next(filter(lambda x: x.get_href(), anchors)).get_href(), get_url('resultPage.html'))
 
     def test_is_element_present(self):
         divs = self.page.div_list

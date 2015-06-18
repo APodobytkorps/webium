@@ -8,13 +8,7 @@ WEB_DRIVER_COOKIE_KEYS_MAP = {
 
 
 def _to_unicode_if_str(s):
-    if isinstance(s, str):
-        try:
-            return s.decode('utf-8')
-        except UnicodeDecodeError:
-            return s.decode('latin-1')
-    else:
-        return s
+    return s
 
 
 def convert_cookie_to_dict(cookie, keys_map=WEB_DRIVER_COOKIE_KEYS_MAP):

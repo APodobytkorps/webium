@@ -1,5 +1,5 @@
 from unittest import TestCase
-from cookielib import Cookie
+from http.cookiejar import Cookie
 from nose.tools import eq_
 from webium.cookie import convert_cookie_to_dict
 

@@ -1,14 +1,14 @@
-import SimpleHTTPServer
-import SocketServer
+from http.server import SimpleHTTPRequestHandler
+import socketserver
 
 from threading import Thread
 
-httpd = SocketServer.TCPServer(('', 0), SimpleHTTPServer.SimpleHTTPRequestHandler)
+httpd = socketserver.TCPServer(('', 0), SimpleHTTPRequestHandler)
 PORT = httpd.server_address[1]
 
 
 def setup_package():
-    print "serving at port", PORT
+    print("serving at port", PORT)
     thread = Thread(target=lambda: httpd.serve_forever())
     thread.daemon = True
     thread.start()

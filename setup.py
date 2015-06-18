@@ -25,6 +25,7 @@ setup(
     install_requires=[
         'selenium',
         'waiting>=1.2.1',
+        'nose',
     ],
     entry_points={
         'nose.plugins': ['browser_closer = webium.plugins.browser_closer:BrowserCloserPlugin'],
