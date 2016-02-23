@@ -1,5 +1,6 @@
 from http.server import SimpleHTTPRequestHandler
 import socketserver
+from webium.driver import close_driver
 
 from threading import Thread
 
@@ -15,7 +16,7 @@ def setup_package():
 
 
 def teardown_package():
-    pass
+    close_driver()
 
 
 def get_url(suffix=''):

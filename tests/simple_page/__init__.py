@@ -1,22 +1,25 @@
 from unittest import TestCase
+
+from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
-from webium.base_page import BasePage
 
 import tests
+from webium.base_page import BasePage
+from webium.controls.checkbox import Checkbox
 from webium.controls.image import Image
+from webium.controls.link import Link
 from webium.controls.select import Select
 from webium.find import Find, Finds
-from webium.controls.link import Link
-from selenium.webdriver.common.by import By
-from webium.controls.checkbox import Checkbox
 
 
 class Container(WebElement):
     second_element_with_id = Find(by=By.XPATH, value='.//*[2]')
+    empty_element_list = Finds(by=By.XPATH, value='.//a[@no_such_attribute]')
 
 
 class SpanContainer(object):
     span = Find(by=By.TAG_NAME, value='span')
+    empty_element_list = Finds(by=By.XPATH, value='.//a[@no_such_attribute]')
 
 
 class DivWithLink(WebElement):
@@ -44,12 +47,13 @@ class SimplePage(BasePage):
     simple_select = Find(Select, By.ID, 'id_select')
     '''@type: Select'''
 
-    def __init__(self):
-        super(SimplePage, self).__init__(url=tests.get_url('simple_page.html'))
+    def __init__(self, driver=None):
+        super(SimplePage, self).__init__(driver=driver, url=tests.get_url('simple_page.html'))
 
     paragraphs = Finds(by=By.TAG_NAME, value='p')
     anchor_list = Finds(Link, By.TAG_NAME, 'a')
     div_list = Finds(DivWithLink, By.TAG_NAME, 'div')
+    empty_element_list = Finds(by=By.XPATH, value='.//a[@no_such_attribute]')
 
 
 class SimplePageTest(TestCase):
